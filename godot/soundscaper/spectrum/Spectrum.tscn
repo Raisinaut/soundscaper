@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cugguqir4jr0k"]
+
+[ext_resource type="Script" uid="uid://csal27e18ayy6" path="res://spectrum/Spectrum.gd" id="1_ngopl"]
+
+[sub_resource type="Curve" id="Curve_qsc4l"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.418182), 0.0, 4.32893, 0, 0, Vector2(0.21134, -0.0181818), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.023054043, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ohm0h"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[node name="Spectrum" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+script = ExtResource("1_ngopl")
+frequency_response = SubResource("Curve_qsc4l")
+volume_gradient = SubResource("Gradient_ohm0h")
+
+[node name="DisabledDelayTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://besx2etyvfyy3"
+path="res://.godot/imported/short wave loop.wav-062952cc840c6d5a31a667b17f3affa6.sample"
+
+[deps]
+
+source_file="res://assets/audio/loops/short wave loop.wav"
+dest_files=["res://.godot/imported/short wave loop.wav-062952cc840c6d5a31a667b17f3affa6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

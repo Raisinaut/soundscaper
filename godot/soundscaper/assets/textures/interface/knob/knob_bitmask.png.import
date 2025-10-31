@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://4wqwbx27283e"
+path="res://.godot/imported/knob_bitmask.png-0b545971a223fb85990a0ad17340e2c2.res"
+
+[deps]
+
+source_file="res://assets/textures/interface/knob/knob_bitmask.png"
+dest_files=["res://.godot/imported/knob_bitmask.png-0b545971a223fb85990a0ad17340e2c2.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

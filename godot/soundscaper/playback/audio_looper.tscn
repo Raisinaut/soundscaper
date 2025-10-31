@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2h1rr4er8idf"]
+
+[ext_resource type="Script" uid="uid://dht6cici3lm34" path="res://playback/audio_looper.gd" id="1_240lt"]
+[ext_resource type="Script" uid="uid://c7i8bhqnkfrlt" path="res://playback/sound_source.gd" id="2_r5pyq"]
+
+[node name="AudioLooper" type="Node2D"]
+script = ExtResource("1_240lt")
+
+[node name="TrackA" type="AudioStreamPlayer2D" parent="."]
+attenuation = 1e-05
+script = ExtResource("2_r5pyq")
+
+[node name="TrackB" type="AudioStreamPlayer2D" parent="."]
+attenuation = 1e-05
+script = ExtResource("2_r5pyq")
