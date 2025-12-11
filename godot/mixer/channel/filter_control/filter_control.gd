@@ -1,3 +1,4 @@
+class_name FilterControl
 extends PanelContainer
 
 const MIN_HZ : int = 10

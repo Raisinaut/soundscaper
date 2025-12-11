@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfkih8yyc4i6n"]
+[gd_scene load_steps=8 format=3 uid="uid://bfkih8yyc4i6n"]
 
 [ext_resource type="Script" uid="uid://dqni3bcg2um5w" path="res://mixer/channel_container.gd" id="1_53ngb"]
 [ext_resource type="PackedScene" uid="uid://ca3h4jkxhb4in" path="res://mixer/channel/channel.tscn" id="1_gghp0"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cugguqir4jr0k" path="res://spectrum/Spectrum.tscn" id="4_osdf2"]
 [ext_resource type="PackedScene" uid="uid://dus288tcjq5gh" path="res://mixer/channel/new_channel.tscn" id="5_hvb6u"]
 [ext_resource type="PackedScene" uid="uid://bh8wq1x6q7f6x" path="res://mixer/channel/master_channel.tscn" id="5_osdf2"]
+
+[sub_resource type="Curve" id="Curve_hvb6u"]
+_limits = [0.0, 1.0, 0.0, 3.0]
+_data = [Vector2(0, 0), 0.0, 1.2394087, 0, 0, Vector2(1, 0.8), 0.25582674, 0.25582674, 0, 0, Vector2(3, 1), 0.0, 0.81103057, 0, 0]
+point_count = 3
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -69,6 +74,7 @@ layout_mode = 2
 [node name="Spectrum" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_osdf2")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+bus_volume_curve = SubResource("Curve_hvb6u")
 
 [node name="MasterChannel" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/HBoxContainer" instance=ExtResource("5_osdf2")]
 layout_mode = 2

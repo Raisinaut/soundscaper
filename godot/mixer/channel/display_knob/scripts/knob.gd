@@ -44,6 +44,7 @@ func turn_to(amount : float) -> void:
 func set_knob_center_rotation(value : float) -> void:
 	knob_center.rotation = value
 	turned.emit(get_turn_position())
+	print(get_turn_position())
 
 func get_turn_position() -> float:
 	var turn_amount = knob_center.rotation / max_rotation

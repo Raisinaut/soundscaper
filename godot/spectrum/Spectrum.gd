@@ -2,20 +2,22 @@ extends Control
 
 const MIN_DB = 60
 
-@onready var analyzerInstance : AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(0,0)
-@onready var disable_delay_timer : Timer = $DisabledDelayTimer
-
-@export_range(0, 20500) var FREQ_MIN = 0
-@export_range(0, 20500) var FREQ_MAX = 16000
-@export var VU_COUNT : int = 40
-@export var frequency_response : Curve
-@export var volume_gradient : Gradient
-
+var bus_idx : int = 0
 var prev_energy : Array = []
 var reactivity : float = 0.6
 var reaction_speed : float = 12.0
 var vu_separation : float = 0.7
 var disabled = false : set = set_disabled
+
+@onready var analyzerInstance : AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(bus_idx,0)
+@onready var disable_delay_timer : Timer = $DisabledDelayTimer
+
+@export_range(0, 20500) var FREQ_MIN = 0
+@export_range(0, 20500) var FREQ_MAX = 16000
+@export var VU_COUNT : int = 40
+@export var bus_volume_curve : Curve
+@export var frequency_response : Curve
+@export var volume_gradient : Gradient
 
 
 func _ready():
@@ -28,6 +30,9 @@ func _process(_delta):
 		return
 	queue_redraw()
 
+func get_volume_scale() -> float:
+	var bus_volume : float = AudioServer.get_bus_volume_linear(bus_idx)
+	return bus_volume_curve.sample(bus_volume)
 
 # SETTERS ----------------------------------------------------------------------
 func set_color(c : Color):
@@ -56,8 +61,7 @@ func _draw():
 	var prev_hz = FREQ_MIN # starting frequency
 	
 	for i in VU_COUNT:
-		@warning_ignore("integer_division")
-		var hz = i * FREQ_MAX / VU_COUNT
+		var hz = i * float(FREQ_MAX) / VU_COUNT
 		var magnitude: float = analyzerInstance.get_magnitude_for_frequency_range(prev_hz, hz).length()
 		var energy = clamp((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1)
 		
@@ -73,7 +77,7 @@ func _draw():
 		prev_energy[i] = energy 
 		
 		# Set VU height
-		vu_length = energy * size.x * 2
+		vu_length = energy * size.x * 2 * get_volume_scale()
 		
 		# Draw final VU
 		var vu_color = Color.WHITE

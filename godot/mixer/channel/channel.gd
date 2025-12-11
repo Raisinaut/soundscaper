@@ -53,7 +53,6 @@ func update_name_label() -> void:
 		name_label.text = "sound"
 
 func get_audio_filename(trim_extension := true) -> String:
-	#print(audio_stream)
 	var file_path : String = audio_stream.resource_path
 	var file_name : String = file_path.split("/")[-1]
 	if trim_extension:

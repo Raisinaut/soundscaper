@@ -31,7 +31,6 @@ func start_fade_timer():
 	fade_timer = get_tree().create_timer(transition_position)
 	fade_timer.timeout.connect(_on_fade_timer_timeout)
 
-
 # SETTERS ----------------------------------------------------------------------
 func set_stream(value : AudioStream) -> void:
 	stream = value
