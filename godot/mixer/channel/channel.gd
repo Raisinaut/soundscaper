@@ -20,7 +20,7 @@ func _ready() -> void:
 	# SETUP BUS
 	AudioServer.add_bus()
 	var bus_pos = AudioServer.bus_count - 1
-	bus_name = str(get_channel_number())
+	bus_name = generate_bus_name()
 	AudioServer.set_bus_name(bus_pos, bus_name)
 	for effect in filter_control.get_effects():
 		AudioServer.add_bus_effect(bus_pos, effect)
@@ -94,6 +94,9 @@ func get_channel_number() -> int:
 	return get_bus_idx()
 
 
-# CALCULATIONS -----------------------------------------------------------------
+# UTILITY ----------------------------------------------------------------------
 func calculate_pitch_scale(semitones : float) -> float:
 	return pow(2, (semitones / 12.0))
+
+func generate_bus_name() -> String:
+	return str(get_instance_id())

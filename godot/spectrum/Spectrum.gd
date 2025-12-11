@@ -79,5 +79,6 @@ func _draw():
 		var vu_color = Color.WHITE
 		if volume_gradient:
 			vu_color = volume_gradient.sample(energy * 2)
-		draw_rect(Rect2(origin.x - vu_length, origin.y + vu_width_with_separation * i, vu_length, vu_width_with_separation * vu_separation), vu_color)
+		var origin_offset = size.y - (vu_width_with_separation * i) - vu_width_with_separation
+		draw_rect(Rect2(origin.x - vu_length, origin_offset, vu_length, vu_width_with_separation * vu_separation), vu_color)
 		prev_hz = hz
