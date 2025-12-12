@@ -6,8 +6,8 @@ const MAX_HZ : int = 20500
 
 @export var hz_curve : Curve
 
-@onready var high_pass_knob = %HighPassKnob
-@onready var low_pass_knob = %LowPassKnob
+@onready var high_pass_knob : DisplayKnob = %HighPassKnob
+@onready var low_pass_knob : DisplayKnob = %LowPassKnob
 
 var high_pass_filter := AudioEffectHighPassFilter.new()
 var low_pass_filter := AudioEffectLowPassFilter.new()

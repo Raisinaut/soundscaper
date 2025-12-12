@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfkih8yyc4i6n"]
+
+[ext_resource type="Script" uid="uid://btf4gyrpykg32" path="res://mixer/mixer.gd" id="1_6yggt"]
+[ext_resource type="Script" uid="uid://dqni3bcg2um5w" path="res://mixer/channel_container.gd" id="2_802uk"]
+[ext_resource type="PackedScene" uid="uid://ca3h4jkxhb4in" path="res://mixer/channel/channel.tscn" id="3_lyhsy"]
+[ext_resource type="PackedScene" uid="uid://dus288tcjq5gh" path="res://mixer/channel/new_channel.tscn" id="4_tho4u"]
+[ext_resource type="Theme" uid="uid://yjlloxuxuglv" path="res://mixer/channel/channel_theme.tres" id="5_2kdrk"]
+[ext_resource type="PackedScene" uid="uid://cugguqir4jr0k" path="res://spectrum/Spectrum.tscn" id="6_o017n"]
+[ext_resource type="PackedScene" uid="uid://bh8wq1x6q7f6x" path="res://mixer/channel/master_channel.tscn" id="7_iu4hc"]
+[ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channel/info_label_settings.tres" id="8_5d0os"]
+[ext_resource type="PackedScene" uid="uid://ci5xwxytvysmg" path="res://mixer/channel/browse_dialog.tscn" id="9_802uk"]
+
+[sub_resource type="Curve" id="Curve_hvb6u"]
+_limits = [0.0, 1.0, 0.0, 3.0]
+_data = [Vector2(0, 0), 0.0, 1.2394087, 0, 0, Vector2(1, 0.8), 0.25582674, 0.25582674, 0, 0, Vector2(3, 1), 0.0, 0.81103057, 0, 0]
+point_count = 3
+
+[sub_resource type="Theme" id="Theme_ow1iv"]
+
+[node name="Mixer" type="CanvasLayer"]
+script = ExtResource("1_6yggt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="UsableSpace" type="ColorRect" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChannelContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("2_802uk")
+channel_scene = ExtResource("3_lyhsy")
+
+[node name="NewChannel" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer/ChannelContainer" instance=ExtResource("4_tho4u")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_2kdrk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spectrum" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_o017n")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+bus_volume_curve = SubResource("Curve_hvb6u")
+
+[node name="MasterChannel" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_iu4hc")]
+layout_mode = 2
+
+[node name="PresetOptions" type="PanelContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Preset"
+label_settings = ExtResource("8_5d0os")
+horizontal_alignment = 1
+
+[node name="SaveButtton" type="Button" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_ow1iv")
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_ow1iv")
+text = "Load"
+
+[node name="BrowseDialog" parent="." instance=ExtResource("9_802uk")]
+oversampling_override = 1.0
+filters = PackedStringArray("*.json")

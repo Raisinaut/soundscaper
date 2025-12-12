@@ -35,32 +35,8 @@ func _on_files_selected(files):
 # FILE MANAGEMENT --------------------------------------------------------------
 ## Emits a signal packet for every valid file
 func add_files(files : Array) -> void:
-	for file in files:
-		var sound = load_audio(file)
-		if sound != null:
-			sound_added.emit(sound, get_filename(file))
-		else:
-			print("Could not load sound from file ", file)
-
-## Retrieves a string before any extension and after the last /
-func get_filename(file_path : String, trim_extension := true) -> String:
-	var file_name : String = file_path.split("/")[-1]
-	if trim_extension:
-		file_name = file_name.split(".")[0]
-	return file_name
-
-## Loads audio as its corresponding AudioStream type.
-func load_audio(path : String):
-	var audio = null
-	var extension = path.split(".")[-1]
-	match extension:
-		"wav":
-			audio = AudioStreamWAV.load_from_file(path)
-		"ogg":
-			audio = AudioStreamOggVorbis.load_from_file(path)
-		"mp3":
-			audio = AudioStreamMP3.load_from_file(path)
-	return audio
+	for file_path in files:
+		sound_added.emit(file_path)
 
 
 # CHECKS -----------------------------------------------------------------------

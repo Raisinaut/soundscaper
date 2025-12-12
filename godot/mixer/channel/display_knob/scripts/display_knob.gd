@@ -1,4 +1,5 @@
 @tool
+class_name DisplayKnob
 extends PanelContainer
 
 signal turned(turn_amount : float)
@@ -38,3 +39,6 @@ func turn_to(amount : float) -> void:
 func set_default_position(value : float) -> void:
 	value = clamp(value, -1.0, 1.0)
 	knob.default_position = value
+
+func get_turn_position() -> float:
+	return knob.get_turn_position()

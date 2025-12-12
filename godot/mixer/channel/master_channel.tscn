@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh8wq1x6q7f6x"]
+[gd_scene load_steps=8 format=3 uid="uid://bh8wq1x6q7f6x"]
 
 [ext_resource type="Script" uid="uid://bb7acnypy5xhr" path="res://mixer/channel/master_channel.gd" id="1_kgjr8"]
+[ext_resource type="Theme" uid="uid://yjlloxuxuglv" path="res://mixer/channel/channel_theme.tres" id="1_tyn3n"]
 [ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channel/info_label_settings.tres" id="2_33ky3"]
 [ext_resource type="Script" uid="uid://bv3u7kki6mrx0" path="res://mixer/channel/auto_scroll.gd" id="3_mhgvy"]
 [ext_resource type="PackedScene" uid="uid://bdq03txeg4kos" path="res://mixer/channel/basic_components/volume_slider.tscn" id="6_1wyd1"]
@@ -12,11 +13,16 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgjr8"]
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+
 [node name="MasterChannel" type="PanelContainer"]
 custom_minimum_size = Vector2(80, 500)
 offset_right = 144.0
 offset_bottom = 1079.0
 size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_tyn3n")
 theme_override_styles/panel = SubResource("StyleBoxFlat_3nd4w")
 script = ExtResource("1_kgjr8")
 
@@ -25,6 +31,7 @@ layout_mode = 2
 
 [node name="Info" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kgjr8")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Info"]
 layout_mode = 2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dus288tcjq5gh"]
+[gd_scene load_steps=6 format=3 uid="uid://dus288tcjq5gh"]
 
 [ext_resource type="Theme" uid="uid://yjlloxuxuglv" path="res://mixer/channel/channel_theme.tres" id="1_5egym"]
 [ext_resource type="Script" uid="uid://c0ynobyxh4d8q" path="res://mixer/channel/new_channel.gd" id="1_im4bs"]
 [ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channel/info_label_settings.tres" id="2_87fmu"]
+[ext_resource type="PackedScene" uid="uid://ci5xwxytvysmg" path="res://mixer/channel/browse_dialog.tscn" id="4_5egym"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cpti"]
 
@@ -66,11 +67,4 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 18
 text = "Browse "
 
-[node name="BrowseDialog" type="FileDialog" parent="."]
-title = "Open File(s)"
-initial_position = 2
-ok_button_text = "Open"
-file_mode = 1
-access = 2
-filters = PackedStringArray("*.wav", "*.mp3", "*.ogg")
-use_native_dialog = true
+[node name="BrowseDialog" parent="." instance=ExtResource("4_5egym")]

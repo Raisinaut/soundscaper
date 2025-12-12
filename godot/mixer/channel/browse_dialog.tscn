@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ci5xwxytvysmg"]
+
+[node name="BrowseDialog" type="FileDialog"]
+title = "Open File(s)"
+initial_position = 2
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.wav", "*.mp3", "*.ogg")
+use_native_dialog = true
