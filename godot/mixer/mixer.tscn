@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfkih8yyc4i6n"]
+[gd_scene load_steps=14 format=3 uid="uid://bfkih8yyc4i6n"]
 
 [ext_resource type="Script" uid="uid://btf4gyrpykg32" path="res://mixer/mixer.gd" id="1_6yggt"]
 [ext_resource type="Script" uid="uid://dqni3bcg2um5w" path="res://mixer/channel_container.gd" id="2_802uk"]
@@ -8,7 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://cugguqir4jr0k" path="res://spectrum/Spectrum.tscn" id="6_o017n"]
 [ext_resource type="PackedScene" uid="uid://bh8wq1x6q7f6x" path="res://mixer/channel/master_channel.tscn" id="7_iu4hc"]
 [ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channel/info_label_settings.tres" id="8_5d0os"]
+[ext_resource type="Script" uid="uid://pn6mjwda0osq" path="res://mixer/classes/hover_panel_container.gd" id="8_lyhsy"]
 [ext_resource type="PackedScene" uid="uid://ci5xwxytvysmg" path="res://mixer/channel/browse_dialog.tscn" id="9_802uk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802uk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0.50980395, 0.50980395, 0.50980395, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="Curve" id="Curve_hvb6u"]
 _limits = [0.0, 1.0, 0.0, 3.0]
@@ -73,12 +83,18 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_2kdrk")
+theme_override_constants/separation = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = -8
 
-[node name="Spectrum" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_o017n")]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_802uk")
+
+[node name="Spectrum" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" instance=ExtResource("6_o017n")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 bus_volume_curve = SubResource("Curve_hvb6u")
@@ -88,13 +104,15 @@ layout_mode = 2
 
 [node name="PresetOptions" type="PanelContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("8_lyhsy")
+metadata/_custom_type_script = "uid://pn6mjwda0osq"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions"]
 layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/PresetOptions/MarginContainer"]
 layout_mode = 2
@@ -118,7 +136,8 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_ow1iv")
-text = "Load"
+text = "Load
+"
 
 [node name="BrowseDialog" parent="." instance=ExtResource("9_802uk")]
 oversampling_override = 1.0

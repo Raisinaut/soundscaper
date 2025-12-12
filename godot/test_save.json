@@ -1,13 +1,24 @@
 [
 	{
 		"audio_file_path": "/home/zach/dev/git/2025/soundscaper/godot/assets/audio/loops/558729__gerent__birds-nature-outdoors-190512_0058s12-091-098-009-048.wav",
-		"filter_highpass": -1.0,
+		"filter_highpass": -0.350647897452158,
 		"filter_lowpass": 1.0,
 		"mute": false,
 		"name_label": "birdies",
 		"pan": 0.0,
-		"pitch": 0.0,
+		"pitch": 0.0933710322505392,
 		"solo": false,
 		"volume": 0.0
+	},
+	{
+		"audio_file_path": "/home/zach/dev/git/2025/soundscaper/godot/assets/audio/loops/829612__benson_arizona__20251013_1323_falls.mp3",
+		"filter_highpass": -1.0,
+		"filter_lowpass": 1.0,
+		"mute": false,
+		"name_label": "829612__benson_arizona__20251013_1323_falls",
+		"pan": 0.0,
+		"pitch": 0.0,
+		"solo": false,
+		"volume": -6.6
 	}
 ]
