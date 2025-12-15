@@ -1,22 +1,23 @@
 [gd_scene load_steps=14 format=3 uid="uid://bfkih8yyc4i6n"]
 
 [ext_resource type="Script" uid="uid://btf4gyrpykg32" path="res://mixer/mixer.gd" id="1_6yggt"]
-[ext_resource type="Script" uid="uid://dqni3bcg2um5w" path="res://mixer/channel_container.gd" id="2_802uk"]
-[ext_resource type="PackedScene" uid="uid://ca3h4jkxhb4in" path="res://mixer/channel/channel.tscn" id="3_lyhsy"]
-[ext_resource type="PackedScene" uid="uid://dus288tcjq5gh" path="res://mixer/channel/new_channel.tscn" id="4_tho4u"]
-[ext_resource type="Theme" uid="uid://yjlloxuxuglv" path="res://mixer/channel/channel_theme.tres" id="5_2kdrk"]
+[ext_resource type="Script" uid="uid://dqni3bcg2um5w" path="res://mixer/channel_manager.gd" id="2_802uk"]
+[ext_resource type="PackedScene" uid="uid://ca3h4jkxhb4in" path="res://mixer/channels/normal/channel.tscn" id="3_lyhsy"]
+[ext_resource type="PackedScene" uid="uid://dus288tcjq5gh" path="res://mixer/channels/new/new_channel.tscn" id="4_tho4u"]
+[ext_resource type="Theme" uid="uid://yjlloxuxuglv" path="res://mixer/channels/channel_theme.tres" id="5_2kdrk"]
 [ext_resource type="PackedScene" uid="uid://cugguqir4jr0k" path="res://spectrum/Spectrum.tscn" id="6_o017n"]
-[ext_resource type="PackedScene" uid="uid://bh8wq1x6q7f6x" path="res://mixer/channel/master_channel.tscn" id="7_iu4hc"]
-[ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channel/info_label_settings.tres" id="8_5d0os"]
+[ext_resource type="PackedScene" uid="uid://bh8wq1x6q7f6x" path="res://mixer/channels/master/master_channel.tscn" id="7_iu4hc"]
+[ext_resource type="LabelSettings" uid="uid://be4xqm441ll6q" path="res://mixer/channels/info_label_settings.tres" id="8_5d0os"]
 [ext_resource type="Script" uid="uid://pn6mjwda0osq" path="res://mixer/classes/hover_panel_container.gd" id="8_lyhsy"]
-[ext_resource type="PackedScene" uid="uid://ci5xwxytvysmg" path="res://mixer/channel/browse_dialog.tscn" id="9_802uk"]
+[ext_resource type="PackedScene" uid="uid://ci5xwxytvysmg" path="res://mixer/channels/new/browse_dialog.tscn" id="9_802uk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802uk"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_bottom = 3
-border_color = Color(0.50980395, 0.50980395, 0.50980395, 1)
+bg_color = Color(0.22, 0.22, 0.22, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
 corner_radius_top_left = 8
 corner_radius_bottom_left = 8
 
@@ -69,7 +70,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ChannelContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+[node name="ChannelManager" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -77,7 +78,11 @@ theme_override_constants/separation = 20
 script = ExtResource("2_802uk")
 channel_scene = ExtResource("3_lyhsy")
 
-[node name="NewChannel" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer/ChannelContainer" instance=ExtResource("4_tho4u")]
+[node name="ChannelContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer/ChannelManager"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NewChannel" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/ScrollContainer/ChannelManager" instance=ExtResource("4_tho4u")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
@@ -93,6 +98,11 @@ theme_override_constants/separation = -8
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_802uk")
+
+[node name="Background" type="ColorRect" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+show_behind_parent = true
+layout_mode = 2
+color = Color(0.51, 0.51, 0.51, 0.2509804)
 
 [node name="Spectrum" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" instance=ExtResource("6_o017n")]
 custom_minimum_size = Vector2(100, 0)

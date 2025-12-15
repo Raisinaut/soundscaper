@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3kicqm78mch7"]
+
+[ext_resource type="Shader" uid="uid://m6hypnnbb2kk" path="res://reactive_shape/reactive_shape.gdshader" id="1_et4yg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_et4yg"]
+noise_type = 3
+frequency = 0.0126
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j0h6k"]
+noise = SubResource("FastNoiseLite_et4yg")
+seamless = true
+seamless_blend_skirt = 0.455
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0h6k"]
+render_priority = 0
+shader = ExtResource("1_et4yg")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_j0h6k")
+
+[sub_resource type="SphereMesh" id="SphereMesh_6nqwt"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_j0h6k")
+mesh = SubResource("SphereMesh_6nqwt")

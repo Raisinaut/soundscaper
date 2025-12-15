@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ggkxpou5412"]
+
+[ext_resource type="Script" uid="uid://dy03ab66m7j7g" path="res://point_cloud/point_cloud.gd" id="1_mmxa3"]
+[ext_resource type="PackedScene" uid="uid://bhlqa6m3hcs5u" path="res://point_cloud/moving_point.tscn" id="2_imfkw"]
+
+[node name="PointCloud" type="Node2D"]
+script = ExtResource("1_mmxa3")
+point_scene = ExtResource("2_imfkw")
+point_count = 100

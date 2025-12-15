@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://uaoqy0qp8axu"]
+
+[ext_resource type="Script" uid="uid://clonbcoj3ii6a" path="res://mixer/channels/components/display_knob/scripts/display_knob.gd" id="1_kxghd"]
+[ext_resource type="PackedScene" uid="uid://8keyxa3vm1lh" path="res://mixer/channels/components/knob/knob.tscn" id="2_6f32y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pw8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qgxe"]
+resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_7pw8q"]
+resource_local_to_scene = true
+font_size = 14
+
+[node name="DisplayKnob" type="PanelContainer"]
+offset_right = 66.0
+offset_bottom = 79.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7pw8q")
+script = ExtResource("1_kxghd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="Knob" parent="VBoxContainer" instance=ExtResource("2_6f32y")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0qgxe")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Label"
+label_settings = SubResource("LabelSettings_7pw8q")

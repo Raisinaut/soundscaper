@@ -2,15 +2,17 @@ class_name HoverPanelContainer
 extends PanelContainer
 
 var hover_detection : Button = null
-var mouse_in_window : bool = false
+var mouse_in_window : bool = true # assume mouse is in window first
 var brightness_tween : Tween
+
+var is_hovered : bool = false : set = set_is_hovered
 
 
 func _ready() -> void:
 	setup_hover_detection()
 
 func _process(_delta: float) -> void:
-	sync_color_with_hover()
+	is_hovered = get_mouse_hover_state()
 
 func setup_hover_detection() -> void:
 	hover_detection = Button.new()
@@ -19,6 +21,17 @@ func setup_hover_detection() -> void:
 	hover_detection.disabled = true
 	hover_detection.mouse_filter = Button.MOUSE_FILTER_IGNORE
 	call_deferred_thread_group("add_child", hover_detection)
+
+
+# SETTERS ----------------------------------------------------------------------
+func set_is_hovered(state : bool) -> void:
+	if is_hovered == state:
+		return
+	is_hovered = state
+	if is_hovered and mouse_in_window:
+		tween_brightness(1.1)
+	else:
+		tween_brightness(1.0)
 
 
 # CHECKS -----------------------------------------------------------------------
@@ -31,19 +44,12 @@ func _notification(what: int) -> void:
 			mouse_in_window = false
 
 ## Checks if the mouse is hovering over the specified area
-func is_hovered() -> bool:
+func get_mouse_hover_state() -> bool:
 	if not hover_detection:
 		return false
 	var hover_rect = Rect2(hover_detection.position, hover_detection.size)
 	var mouse_pos = get_local_mouse_position()
 	return hover_rect.has_point(mouse_pos)
-
-## Darkens the root node when hover is active
-func sync_color_with_hover():
-	if is_hovered() and mouse_in_window:
-		tween_brightness(1.1)
-	else:
-		tween_brightness(1.0)
 
 func tween_brightness(brightness : float):
 	var c = Color.BLACK.lightened(brightness)

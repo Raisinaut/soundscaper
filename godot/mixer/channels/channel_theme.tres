@@ -1,0 +1,58 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://yjlloxuxuglv"]
+
+[ext_resource type="FontFile" uid="uid://dt3id6ojg3i5a" path="res://assets/fonts/Reddit_Sans/static/RedditSans-Black.ttf" id="1_g8wek"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3qa0"]
+content_margin_top = 3.0
+content_margin_bottom = 4.0
+bg_color = Color(0.185383, 0.185383, 0.185383, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8wek"]
+content_margin_top = 3.0
+content_margin_bottom = 4.0
+bg_color = Color(0.131379, 0.131379, 0.131379, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpmpc"]
+content_margin_top = 3.0
+content_margin_bottom = 4.0
+bg_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdr3h"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4u85"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.13, 0.13, 0.78431374)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/hover = SubResource("StyleBoxFlat_b3qa0")
+Button/styles/normal = SubResource("StyleBoxFlat_g8wek")
+Button/styles/pressed = SubResource("StyleBoxFlat_qpmpc")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_rdr3h")
+TooltipLabel/font_sizes/font_size = 24
+TooltipLabel/fonts/font = ExtResource("1_g8wek")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_e4u85")

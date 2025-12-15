@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var channel_container = %ChannelContainer
+@onready var channel_manager = %ChannelManager
 @onready var save_button = %SaveButtton
 @onready var load_button = %LoadButton
 @onready var browse_dialog = $BrowseDialog
@@ -31,8 +31,8 @@ func _on_load_button_pressed() -> void:
 func _on_file_selected(file) -> void:
 	match browse_action:
 		BROWSE_ACTIONS.SAVE:
-			var data = channel_container.get_used_channel_data()
+			var data = channel_manager.get_used_channel_data()
 			SaveManager.save_data(data, file)
 		BROWSE_ACTIONS.LOAD:
 			var preset = SaveManager.load_data(file)
-			channel_container.load_configuration(preset)
+			channel_manager.load_configuration(preset)
